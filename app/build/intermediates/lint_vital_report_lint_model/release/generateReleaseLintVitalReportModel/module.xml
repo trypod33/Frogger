@@ -1,0 +1,20 @@
+<lint-module
+    format="1"
+    dir="/workspace/frogger/app"
+    name=":app"
+    type="APP"
+    maven="frogger:app:unspecified"
+    agpVersion="9.4.1"
+    buildFolder="build"
+    bootClassPath="/workspace/tools/sdk/platforms/android-34/android.jar:/workspace/tools/sdk/build-tools/36.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-34"
+    neverShrinking="true"
+    highlightGradualR8Api="false">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

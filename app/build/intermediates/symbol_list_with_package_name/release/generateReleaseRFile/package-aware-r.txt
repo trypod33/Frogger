@@ -1,0 +1,3 @@
+com.trypod33.frogger
+drawable ic_game
+string app_name

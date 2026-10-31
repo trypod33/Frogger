@@ -1,0 +1,8 @@
+com.trypod33.frogger.app-pngs-0 /workspace/frogger/app/build/generated/res/pngs/release
+com.trypod33.frogger.app-updated_navigation_xml-1 /workspace/frogger/app/build/generated/updated_navigation_xml/release
+com.trypod33.frogger.app-packageReleaseResources-2 /workspace/frogger/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.trypod33.frogger.app-packageReleaseResources-3 /workspace/frogger/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.trypod33.frogger.app-release-4 /workspace/frogger/app/build/intermediates/merged_res/release/mergeReleaseResources
+com.trypod33.frogger.app-main-5 /workspace/frogger/app/src/main/res
+com.trypod33.frogger.app-release-6 /workspace/frogger/app/src/release/res
+gradleHome-0 /tmp/.gradle

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.trypod33.frogger.app-mergeReleaseResources-1:/values/values.xml",
+            "map": [
+                {
+                    "source": "/workspace/frogger/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "51",
+                        "endOffsets": "102"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+#Sat Oct 31 00:23:39 UTC 2026
+base.0=/workspace/frogger/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
