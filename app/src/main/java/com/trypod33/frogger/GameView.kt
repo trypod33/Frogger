@@ -87,6 +87,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private val holder = getHolder()
     private var thread: Thread? = null
     @Volatile private var running = false
+    @Volatile private var crash: String? = null
 
     private val prefs: SharedPreferences = context.getSharedPreferences("frogger", Context.MODE_PRIVATE)
     private var hiScore = prefs.getInt("hi", 0)
@@ -501,6 +502,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         // score bar
         textMed.color = 0xFFFF5040.toInt()
         c.drawText("1-UP", 24f, 13f, textMed)
+        textMedC.color = 0xFFFF5040.toInt()
         c.drawText("HI-SCORE", 160f, 13f, textMedC)
         textMed.color = 0xFFE82828.toInt()
         c.drawText(String.format(java.util.Locale.US, "%05d", score), 24f, 27f, textMed)
@@ -671,11 +673,27 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
             var dt = (now - last) / 1000f
             if (dt > 0.05f) dt = 0.05f
             last = now
-            update(dt)
-            val c = holder.lockCanvas()
-            if (c != null) {
-                drawFrame(c)
-                holder.unlockCanvasAndPost(c)
+            try {
+                update(dt)
+                val c = holder.lockCanvas()
+                if (c != null) {
+                    drawFrame(c)
+                    holder.unlockCanvasAndPost(c)
+                }
+            } catch (t: Throwable) {
+                crash = t.stackTraceToString()
+                try {
+                    val c = holder.lockCanvas()
+                    if (c != null) {
+                        c.drawColor(Color.BLACK)
+                        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                            typeface = Typeface.MONOSPACE; textSize = 7f; color = 0xFFFFFF00.toInt() }
+                        var y = 12f
+                        for (line in crash!!.split("\n").take(48)) { c.drawText(line, 4f, y, p); y += 9f }
+                        holder.unlockCanvasAndPost(c)
+                    }
+                } catch (t2: Throwable) {}
+                try { Thread.sleep(200) } catch (ie: InterruptedException) {}
             }
         }
     }
