@@ -1,34 +1,82 @@
 [
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_over.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/over.wav"
-    },
-    {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_home.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/home.wav"
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_log3.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_log3.png"
     },
     {
         "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/drawable_ic_game.xml.flat",
         "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/drawable/ic_game.xml"
     },
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_splash.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/splash.wav"
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_frog_hop.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_frog_hop.png"
     },
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_hop.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/hop.wav"
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_home.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/home.wav"
     },
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_music.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/music.wav"
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_car.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_car.png"
     },
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_splat.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/splat.wav"
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_hop.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/hop.wav"
     },
     {
-        "merged": "com.trypod33.frogger.app-release-3:/raw_clear.wav.flat",
-        "source": "com.trypod33.frogger.app-main-4:/raw/clear.wav"
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_clear.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/clear.wav"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_racer.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_racer.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_log5.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_log5.png"
+    },
+    {
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_over.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/over.wav"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_turtle.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_turtle.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_truck.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_truck.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_dozer.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_dozer.png"
+    },
+    {
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_splat.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/splat.wav"
+    },
+    {
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_splash.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/splash.wav"
+    },
+    {
+        "merged": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-release-3:/raw_music.wav.flat",
+        "source": "/tmp/.gradle/daemon/9.8.1/com.trypod33.frogger.app-main-4:/raw/music.wav"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_frog_sit.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_frog_sit.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_fly.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_fly.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_skull.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_skull.png"
+    },
+    {
+        "merged": "com.trypod33.frogger.app-release-3:/drawable-nodpi_spr_beetle.png.flat",
+        "source": "com.trypod33.frogger.app-main-4:/drawable-nodpi/spr_beetle.png"
     }
 ]

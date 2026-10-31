@@ -1,5 +1,17 @@
 com.trypod33.frogger
 drawable ic_game
+drawable spr_beetle
+drawable spr_car
+drawable spr_dozer
+drawable spr_fly
+drawable spr_frog_hop
+drawable spr_frog_sit
+drawable spr_log3
+drawable spr_log5
+drawable spr_racer
+drawable spr_skull
+drawable spr_truck
+drawable spr_turtle
 raw clear
 raw home
 raw hop

@@ -3,6 +3,7 @@ package com.trypod33.frogger
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Matrix
@@ -144,7 +145,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private var hedgeBmp: Bitmap? = null
     private var purpleBmp: Bitmap? = null
 
-    private val spritePaint = Paint().apply { isFilterBitmap = false }
+    private val spritePaint = Paint().apply { isFilterBitmap = true }
     private val plain = Paint()
     private val textBig = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         typeface = Typeface.MONOSPACE; isFakeBoldText = true; textSize = 34f; textAlign = Paint.Align.CENTER }
@@ -280,6 +281,10 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
     // ---------- sprites ----------
 
+    private fun resBmp(name: String): Bitmap? =
+        BitmapFactory.decodeResource(resources,
+            resources.getIdentifier(name, "drawable", context.packageName))
+
     private fun bmpFromMap(map: Array<String>, pal: Map<Char, Int>): Bitmap {
         val w = map[0].length
         val h = map.size
@@ -300,37 +305,37 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private fun buildSprites() {
         val frogPal = mapOf('D' to 0xFF007800.toInt(), 'G' to 0xFF00D000.toInt(),
             'Y' to 0xFFF8D800.toInt(), 'W' to 0xFFFFFFFF.toInt(), 'K' to 0xFF000000.toInt())
-        val sit = bmpFromMap(FROG_MAP, frogPal)
-        val hop = bmpFromMap(FROG_HOP_MAP, frogPal)
+        val sit = resBmp("spr_frog_sit") ?: bmpFromMap(FROG_MAP, frogPal)
+        val hop = resBmp("spr_frog_hop") ?: bmpFromMap(FROG_HOP_MAP, frogPal)
         frogSit = arrayOf(sit, rot(sit, 90f), rot(sit, 180f), rot(sit, 270f))
         frogHop = arrayOf(hop, rot(hop, 90f), rot(hop, 180f), rot(hop, 270f))
 
         val turtlePal = mapOf('R' to 0xFFE04848.toInt(), 'O' to 0xFFF8A058.toInt(),
             'G' to 0xFF00B000.toInt(), 'K' to 0xFF7A1818.toInt())
-        sprTurtle = bmpFromMap(TURTLE_MAP, turtlePal)
+        sprTurtle = resBmp("spr_turtle") ?: bmpFromMap(TURTLE_MAP, turtlePal)
 
         val racerPal = mapOf('W' to 0xFFF8F8F8.toInt(), 'R' to 0xFFE02020.toInt(), 'K' to 0xFF000000.toInt())
-        sprRacer = bmpFromMap(RACER_MAP, racerPal)
+        sprRacer = resBmp("spr_racer") ?: bmpFromMap(RACER_MAP, racerPal)
 
         val carPal = mapOf('P' to 0xFFC848E8.toInt(), 'C' to 0xFF40E0F0.toInt(), 'K' to 0xFF000000.toInt())
-        sprCar = bmpFromMap(CAR_MAP, carPal)
+        sprCar = resBmp("spr_car") ?: bmpFromMap(CAR_MAP, carPal)
 
         val dozerPal = mapOf('G' to 0xFF30C030.toInt(), 'D' to 0xFF206020.toInt(), 'K' to 0xFF000000.toInt())
-        sprDozer = bmpFromMap(DOZER_MAP, dozerPal)
+        sprDozer = resBmp("spr_dozer") ?: bmpFromMap(DOZER_MAP, dozerPal)
 
         val beetlePal = mapOf('Y' to 0xFFF8D020.toInt(), 'R' to 0xFFE03030.toInt(), 'K' to 0xFF000000.toInt())
-        sprBeetle = bmpFromMap(BEETLE_MAP, beetlePal)
+        sprBeetle = resBmp("spr_beetle") ?: bmpFromMap(BEETLE_MAP, beetlePal)
 
         val flyPal = mapOf('R' to 0xFFE83030.toInt(), 'O' to 0xFF60D060.toInt(), 'W' to 0xFFF0F0F0.toInt())
-        sprFly = bmpFromMap(FLY_MAP, flyPal)
+        sprFly = resBmp("spr_fly") ?: bmpFromMap(FLY_MAP, flyPal)
 
         val skullPal = mapOf('W' to 0xFFE8E8E8.toInt(), 'K' to 0xFF282828.toInt())
-        sprSkull = bmpFromMap(SKULL_MAP, skullPal)
+        sprSkull = resBmp("spr_skull") ?: bmpFromMap(SKULL_MAP, skullPal)
 
-        sprTruck = makeTruck()
+        sprTruck = resBmp("spr_truck") ?: makeTruck()
         sprTruckFlip = flip(sprTruck!!)
-        log3 = makeLog(48)
-        log5 = makeLog(80)
+        log3 = resBmp("spr_log3") ?: makeLog(48)
+        log5 = resBmp("spr_log5") ?: makeLog(80)
 
         hedgeBmp = makeSpeckle(0xFF00A000.toInt(), 0xFF006800.toInt())
         purpleBmp = makeSpeckle(0xFF9848C8.toInt(), 0xFF70289A.toInt())
