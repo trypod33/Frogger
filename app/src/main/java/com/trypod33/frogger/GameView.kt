@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -248,12 +250,32 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         ".WWWWWWWWWW.",
         "..WWWWWWWW..",
         "............")
+    private val sIds = HashMap<String, Int>()
+    private val snd: SoundPool = SoundPool.Builder()
+        .setMaxStreams(6)
+        .setAudioAttributes(
+            AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build())
+        .build()
+    private var musicStream = 0
+
+    private fun play(name: String, vol: Float = 0.55f) {
+        val id = sIds[name] ?: return
+        snd.play(id, vol, vol, 1, 0, 1f)
+    }
+    private fun playLoop(name: String, vol: Float): Int = sIds[name]?.let { snd.play(it, vol, vol, 1, -1, 1f) } ?: 0
+    private fun stopLoop(st: Int): Int { if (st != 0) snd.stop(st); return 0 }
+
     init {
         holder.addCallback(this)
         isFocusable = true
         isFocusableInTouchMode = true
         buildSprites()
         resetLanes()
+        for (n in listOf("hop", "splat", "splash", "home", "clear", "over", "music"))
+            sIds[n] = snd.load(context, resources.getIdentifier(n, "raw", context.packageName), 1)
     }
 
     // ---------- sprites ----------
@@ -380,6 +402,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
             Lane(3, -1, 26f, 4, 38f, TYPE_TURTLE, intArrayOf(1, 3)),
             Lane(4, 1, 40f, 2, 80f, TYPE_LOG, null),
             Lane(5, -1, 26f, 3, 38f, TYPE_TURTLE, intArrayOf(1)),
+            Lane(6, -1, 26f, 4, 38f, TYPE_TURTLE, intArrayOf(0, 2)),
             Lane(8, -1, 26f, 2, 32f, TYPE_TRUCK, null),
             Lane(9, 1, 62f, 3, 12f, TYPE_RACER, null),
             Lane(10, -1, 30f, 4, 12f, TYPE_CAR, null),
@@ -400,6 +423,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         resetLanes()
         respawnFrog()
         state = STATE_PLAY
+        if (musicStream == 0) musicStream = playLoop("music", 0.4f)
     }
 
     private fun respawnFrog() {
@@ -421,6 +445,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         if (dX != 0 && (tx < 0f || tx > W - 12f)) return
         if (tr < R_HOMES || tr > R_START) return
         hopping = true; hopT = 0f
+        play("hop")
         hopFromX = frogX; hopToX = tx
         hopFromRow = frogRow; hopToRow = tr
         if (dRow == -1 && tr < bestRow) {
@@ -436,6 +461,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     private fun die(type: Int) {
+        play(if (type == DEATH_DROWN) "splash" else "splat")
         state = STATE_DYING
         deathT = 0f
         deathType = type
@@ -451,6 +477,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
             if (Math.abs(cx - bayCx) <= 7f) {
                 if (bays[b]) { die(DEATH_SKULL); return }
                 bays[b] = true
+                play("home")
                 var pts = 50
                 if (flyBay == b) { pts += 200; flyBay = -1; flyTimer = 9f }
                 score += pts
@@ -470,6 +497,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     private fun nextLevel() {
+        play("clear")
         level++
         mult = (1f + 0.13f * (level - 1)).coerceAtMost(2.2f)
         timerMax = (30f - 2f * (level - 1)).coerceAtLeast(18f)
@@ -483,6 +511,8 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private fun respawnAfterDeath() {
         lives--
         if (lives < 0) {
+            musicStream = stopLoop(musicStream)
+            play("over")
             if (score > hiScore) { hiScore = score; prefs.edit().putInt("hi", hiScore).apply() }
             state = STATE_OVER
         } else {
@@ -637,7 +667,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
                         }
                     }
                     TYPE_TRUCK -> {
-                        val b = if (lane.dir > 0) sprTruckFlip else sprTruck
+                        val b = if (lane.dir > 0) sprTruck else sprTruckFlip
                         dst.set(x, y + 2f, x + 32f, y + 13f)
                         c.drawBitmap(b!!, null, dst, spritePaint)
                     }
@@ -789,6 +819,11 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
                 try { Thread.sleep(200) } catch (ie: InterruptedException) {}
             }
         }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (!hasFocus) snd.autoPause() else snd.autoResume()
     }
 
     override fun surfaceCreated(h: SurfaceHolder) {

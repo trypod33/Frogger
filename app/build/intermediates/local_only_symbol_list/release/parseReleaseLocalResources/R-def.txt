@@ -1,4 +1,11 @@
 R_DEF: Internal format may change without notice
 local
 drawable ic_game
+raw clear
+raw home
+raw hop
+raw music
+raw over
+raw splash
+raw splat
 string app_name
