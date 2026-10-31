@@ -155,6 +155,99 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private val barPaint = Paint()
     private val dst = android.graphics.RectF()
 
+    // ---------- pixel maps ----------
+
+    private val FROG_MAP = arrayOf(
+        ".DD......DD.",
+        ".DGD....DGD.",
+        ".DWK....KWD.",
+        ".DGD....DGD.",
+        "..DDDDDDDD..",
+        ".DGGGGGGGGD.",
+        "DDGYDGGGYGDD",
+        "DGGGGGGGGGGD",
+        ".DGYYGGYYGD.",
+        ".DGGGGGGGGD.",
+        "..DDGGGGDD..",
+        ".DG..GG..GD.",
+        ".DD..GG..DD.")
+
+    private val FROG_HOP_MAP = arrayOf(
+        ".DD......DD.",
+        ".DGD....DGD.",
+        ".DWK....KWD.",
+        ".DGD....DGD.",
+        "..DDDDDDDD..",
+        ".DGGGGGGGGD.",
+        "DDGYDGGGYGDD",
+        "DGGGGGGGGGGD",
+        ".DGYYGGYYGD.",
+        ".DGGGGGGGGD.",
+        "DGDGGGGGGDGD",
+        "D....GG....D",
+        "............")
+
+    private val TURTLE_MAP = arrayOf(
+        "............",
+        "G..RRRRRR...",
+        "GGRRORORRR..",
+        "GGRROKORRR..",
+        "GGRRORORRR..",
+        "G.RRRRRRR...",
+        "....RRRR....",
+        "..G......G..")
+
+    private val RACER_MAP = arrayOf(
+        "............",
+        "...WWWWWW...",
+        "..WWWWWWWW..",
+        ".WWWRRRRWWW.",
+        "KWWWWWWWWWWK",
+        "K..WWWWWW..K")
+
+    private val CAR_MAP = arrayOf(
+        "............",
+        "...PPPPPP...",
+        "..PPPPPPPP..",
+        ".PPCCPPCCPP.",
+        "KPPPPPPPPPPK",
+        "K..PPPPPP..K")
+
+    private val DOZER_MAP = arrayOf(
+        "............",
+        "...GGGGGG...",
+        "..GGGGGGGG..",
+        ".GGGGGGGGGG.",
+        "DDDDDDDDDDDD",
+        "DKDKDKDKDKDK")
+
+    private val BEETLE_MAP = arrayOf(
+        "............",
+        "...YYYYYY...",
+        "..YYYYYYYY..",
+        ".YYRRYYRRYY.",
+        "KYYYYYYYYYYK",
+        "K..YYYYYY..K")
+
+    private val FLY_MAP = arrayOf(
+        "W......W",
+        ".W.RR.W.",
+        "..RRRR..",
+        ".RROORR.",
+        "..RRRR..",
+        "...RR...")
+
+    private val SKULL_MAP = arrayOf(
+        "..WWWWWWWW..",
+        ".WWWWWWWWWW.",
+        "WWKKWWWWKKWW",
+        "WWKKWWWWKKWW",
+        "WWWWKWWKWWWW",
+        ".WWKKKKKKWW.",
+        ".WWKWKWKWWW.",
+        ".WWWWWWWWWW.",
+        "..WWWWWWWW..",
+        "............")
     init {
         holder.addCallback(this)
         isFocusable = true
@@ -743,97 +836,5 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         return true
     }
 
-    // ---------- pixel maps ----------
 
-    private val FROG_MAP = arrayOf(
-        ".DD......DD.",
-        ".DGD....DGD.",
-        ".DWK....KWD.",
-        ".DGD....DGD.",
-        "..DDDDDDDD..",
-        ".DGGGGGGGGD.",
-        "DDGYDGGGYGDD",
-        "DGGGGGGGGGGD",
-        ".DGYYGGYYGD.",
-        ".DGGGGGGGGD.",
-        "..DDGGGGDD..",
-        ".DG..GG..GD.",
-        ".DD..GG..DD.")
-
-    private val FROG_HOP_MAP = arrayOf(
-        ".DD......DD.",
-        ".DGD....DGD.",
-        ".DWK....KWD.",
-        ".DGD....DGD.",
-        "..DDDDDDDD..",
-        ".DGGGGGGGGD.",
-        "DDGYDGGGYGDD",
-        "DGGGGGGGGGGD",
-        ".DGYYGGYYGD.",
-        ".DGGGGGGGGD.",
-        "DGDGGGGGGDGD",
-        "D....GG....D",
-        "............")
-
-    private val TURTLE_MAP = arrayOf(
-        "............",
-        "G..RRRRRR...",
-        "GGRRORORRR..",
-        "GGRROKORRR..",
-        "GGRRORORRR..",
-        "G.RRRRRRR...",
-        "....RRRR....",
-        "..G......G..")
-
-    private val RACER_MAP = arrayOf(
-        "............",
-        "...WWWWWW...",
-        "..WWWWWWWW..",
-        ".WWWRRRRWWW.",
-        "KWWWWWWWWWWK",
-        "K..WWWWWW..K")
-
-    private val CAR_MAP = arrayOf(
-        "............",
-        "...PPPPPP...",
-        "..PPPPPPPP..",
-        ".PPCCPPCCPP.",
-        "KPPPPPPPPPPK",
-        "K..PPPPPP..K")
-
-    private val DOZER_MAP = arrayOf(
-        "............",
-        "...GGGGGG...",
-        "..GGGGGGGG..",
-        ".GGGGGGGGGG.",
-        "DDDDDDDDDDDD",
-        "DKDKDKDKDKDK")
-
-    private val BEETLE_MAP = arrayOf(
-        "............",
-        "...YYYYYY...",
-        "..YYYYYYYY..",
-        ".YYRRYYRRYY.",
-        "KYYYYYYYYYYK",
-        "K..YYYYYY..K")
-
-    private val FLY_MAP = arrayOf(
-        "W......W",
-        ".W.RR.W.",
-        "..RRRR..",
-        ".RROORR.",
-        "..RRRR..",
-        "...RR...")
-
-    private val SKULL_MAP = arrayOf(
-        "..WWWWWWWW..",
-        ".WWWWWWWWWW.",
-        "WWKKWWWWKKWW",
-        "WWKKWWWWKKWW",
-        "WWWWKWWKWWWW",
-        ".WWKKKKKKWW.",
-        ".WWKWKWKWWW.",
-        ".WWWWWWWWWW.",
-        "..WWWWWWWW..",
-        "............")
 }
